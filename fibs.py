@@ -11,5 +11,16 @@ def fibs(n):
 		b = c
 	return b
 
-val = 30
-print(fibs(val))
+
+def fibs_short(n):
+	a = 0
+	b = 1
+	for _ in range(1, n):
+		c = a + b
+		a = b
+		b = c
+	return b
+
+for val in [0, 1, 5, 9, 600]:
+	print(f'fibs: {fibs(val)}')
+	print(f'fibs_short: {fibs_short(val)}')
