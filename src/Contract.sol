@@ -3,7 +3,7 @@ pragma solidity ^0.8.10;
 
 contract Contract {
     // Function to get the fibonacci number at index n
-    function fibs(uint256 n) public pure returns (uint256 b) {
+    function fibs(uint256 n) external pure returns (uint256 b) {
         if (n == 0) {
             return 0;
         }
