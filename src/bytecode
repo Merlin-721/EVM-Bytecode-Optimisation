@@ -5,16 +5,19 @@ DUP1
 PUSH1 0X00
 MSTORE
 PUSH1 0X08 //SET DESTINATION 
-SWAP1 // SWAP DESTINATION WITH ARG
+SWAP1
 ISZERO // CHECK IF INPUT IS ZERO
-SWAP1 // swap iszero check with DESTINATION so it checks the result
+SWAP1
 JUMPI
 // if not 1, set a=1 and b=1
-PUSH1 0X01
-DUP1
-PUSH1 0X01
-MSTORE
-PUSH1 0X02
+PUSH1 0X01 // 1 for a and b
+DUP1 // setting both a and b to 1
+PUSH1 0X20 // add offset from input arg
+MSTORE // store a
+PUSH1 0X40 // offset from a
+MSTORE // store b
+PUSH1 0X02 // i = 2
+PUSH1 0x60 // offset from b
 MSTORE
 
 JUMPDEST // DESTINATION IF ZERO
