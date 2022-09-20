@@ -16,4 +16,17 @@ contract Contract {
         }
         return b;
     }
+
+    function fibs_short(uint256) external pure returns (uint256 b) {
+        uint256 a = 0;
+        b = 1;
+        for (uint256 i = 1; i < n; i++) {
+            uint256 c = a + b;
+            a = b;
+            b = c;
+        }
+        return b;
+    }
+
+    }
 }
