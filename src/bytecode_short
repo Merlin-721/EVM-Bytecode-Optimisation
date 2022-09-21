@@ -24,9 +24,9 @@ GT // want to jump if not i < n
 PUSH1 0X2f // push JUMPDEST of return value
 JUMPI // jump if end of loop
 PUSH1 0X40 // b storage
-PUSH1 0X20 // a storage
 MLOAD // load b
 DUP1 // copy b for assigment to a
+PUSH1 0X20 // a storage
 MLOAD // load a
 ADD // a + b
 PUSH1 0X80 // c storage
