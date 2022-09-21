@@ -1,5 +1,7 @@
 PUSH1 0X00 // AVOID UNDERFLOW
 CALLDATALOAD // load n
+PUSH1 0X60 
+SHR // shift value to right
 PUSH1 0X00 // n storage
 MSTORE
 PUSH1 0x00 // a = 0 value (could remove as 0 anyway)
@@ -14,12 +16,12 @@ MSTORE
 
 // for loop
 JUMPDEST
-PUSH1 0x00 // load n memory slot (doesnt load on Dbgereum)
+PUSH1 0x00 // load n memory slot 
 MLOAD // load n value onto stack
-PUSH1 0X60 // load i from memory (doesnt load on Dbgereum)
+PUSH1 0X60 // load i from memory
 MLOAD // push i value onto stack
 GT // want to jump if not i < n
-PUSH1 0X2f // push JUMPDEST of return value
+PUSH1 0X43 // push JUMPDEST of RETURN value
 JUMPI // jump if end of loop
 PUSH1 0X40 // b storage
 MLOAD // load b
@@ -41,10 +43,14 @@ PUSH1 0X01 // value to add
 ADD // increment i
 PUSH1 0X60 // i storage
 MSTORE // store i
-PUSH1 0X16 // start of loop dest
+PUSH1 0X18 // start of loop dest
 JUMP // jump to start of loop
 
 // return b
 JUMPDEST
-PUSH1 0x01 // push b storage
+PUSH1 0X40
+DUP1
+MLOAD
+PUSH1 0x60
+SHL
 RETURN
