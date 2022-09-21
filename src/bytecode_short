@@ -22,8 +22,19 @@ PUSH1 0X01 // load i from memory
 MLOAD // push i value onto stack
 LT // check if i < n
 PUSH1 0X70 // push JUMPDEST of return value
+JUMPI // jump if end of loop
+PUSH1 0X40 // b storage
+PUSH1 0X20 // a storage
+MLOAD // load b
+DUP // copy b for assigment to a
+MLOAD // load a
+ADD // a + b
+PUSH1 0X80 // c storage
+MSTORE // c = a + b
+PUSH1 0X20
+MSTORE // a = b
 
 // return b
-PUSH1 0x01 push b storage
+PUSH1 0x01 // push b storage
 MLOAD
 RETURN
