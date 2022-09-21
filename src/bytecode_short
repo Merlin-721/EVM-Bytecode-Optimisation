@@ -1,8 +1,8 @@
 JUMPDEST
 PUSH1 0X04 // AVOID UNDERFLOW
-CALLDATALOAD // LOAD ARGS
+CALLDATALOAD // load n
 // DUP1
-PUSH1 0X00 // input arg storage
+PUSH1 0X00 // n storage
 MSTORE
 PUSH1 0x00 // a = 0 value
 PUSH1 0x20 // a = 0 storage
@@ -13,3 +13,17 @@ MSTORE
 PUSH1 0x01 // i = 1 value
 PUSH1 0x60 // i = 1 storage
 MSTORE
+
+// for loop
+JUMPDEST
+PUSH1 0x00 // load n memory slot
+MLOAD // load n value onto stack
+PUSH1 0X01 // load i from memory
+MLOAD // push i value onto stack
+LT // check if i < n
+PUSH1 0X70 // push JUMPDEST of return value
+
+// return b
+PUSH1 0x01 push b storage
+MLOAD
+RETURN
