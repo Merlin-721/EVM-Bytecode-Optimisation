@@ -1,0 +1,15 @@
+JUMPDEST
+PUSH1 0X04 // AVOID UNDERFLOW
+CALLDATALOAD // LOAD ARGS
+// DUP1
+PUSH1 0X00 // input arg storage
+MSTORE
+PUSH1 0x00 // a = 0 value
+PUSH1 0x20 // a = 0 storage
+MSTORE
+PUSH1 0x01 // b = 1 value
+PUSH1 0x40 // b = 1 storage
+MSTORE
+PUSH1 0x01 // i = 1 value
+PUSH1 0x60 // i = 1 storage
+MSTORE
