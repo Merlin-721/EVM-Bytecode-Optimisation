@@ -1,10 +1,8 @@
-JUMPDEST
-PUSH1 0X04 // AVOID UNDERFLOW
+PUSH1 0X00 // AVOID UNDERFLOW
 CALLDATALOAD // load n
-// DUP1
 PUSH1 0X00 // n storage
 MSTORE
-PUSH1 0x00 // a = 0 value
+PUSH1 0x00 // a = 0 value (could remove as 0 anyway)
 PUSH1 0x20 // a = 0 storage
 MSTORE
 PUSH1 0x01 // b = 1 value
@@ -16,9 +14,9 @@ MSTORE
 
 // for loop
 JUMPDEST
-PUSH1 0x00 // load n memory slot
+PUSH1 0x00 // load n memory slot (doesnt load on Dbgereum)
 MLOAD // load n value onto stack
-PUSH1 0X60 // load i from memory
+PUSH1 0X60 // load i from memory (doesnt load on Dbgereum)
 MLOAD // push i value onto stack
 GT // want to jump if not i < n
 PUSH1 0X2f // push JUMPDEST of return value
