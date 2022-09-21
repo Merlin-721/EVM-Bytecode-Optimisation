@@ -31,8 +31,20 @@ MLOAD // load a
 ADD // a + b
 PUSH1 0X80 // c storage
 MSTORE // c = a + b
-PUSH1 0X20
+PUSH1 0X20 // a storage
 MSTORE // a = b
+PUSH1 0X80 // c storage
+MLOAD // load c
+PUSH1 0x40 // b storage
+MSTORE // b = c
+PUSH1 0X60 // i storage
+MLOAD // load i
+PUSH1 0X01 // value to add
+ADD // increment i
+PUSH1 0X60 // i storage
+MSTORE // store i
+PUSH1 0X16 // start of loop dest
+JUMP // jump to start of loop
 
 // return b
 JUMPDEST
