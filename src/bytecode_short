@@ -21,7 +21,7 @@ MLOAD // load n value onto stack
 PUSH1 0X60 // load i from memory
 MLOAD // push i value onto stack
 GT // want to jump if not i < n
-PUSH1 0X43 // push JUMPDEST of RETURN value
+PUSH1 0X3e // push JUMPDEST of RETURN value
 JUMPI // jump if end of loop
 PUSH1 0X40 // b storage
 MLOAD // load b
@@ -43,15 +43,16 @@ PUSH1 0X01 // value to add
 ADD // increment i
 PUSH1 0X60 // i storage
 MSTORE // store i
-PUSH1 0X18 // start of loop dest
+PUSH1 0X13 // start of loop dest
 JUMP // jump to start of loop
 
 // return b
 JUMPDEST
-PUSH1 0X40
-DUP1
-MLOAD
-PUSH1 0x60
-SHL
-MSTORE // OUT OF GAS
+PUSH1 0X20 // 32 bytes for return size
+PUSH1 0X40 // b storage
+MLOAD // load b 
+PUSH1 0x60 // amount to shift left by
+SHL // shift left
+PUSH1 0XA0 // new storage slot
+MSTORE // store -->> stack underflow
 RETURN
