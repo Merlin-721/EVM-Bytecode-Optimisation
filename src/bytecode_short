@@ -9,9 +9,6 @@ PUSH1 0X00
 EQ
 PUSH1 0X45
 JUMPI
-//PUSH1 0x00 // a = 0 value (could remove as 0 anyway)
-//PUSH1 0x20 // a = 0 storage
-//MSTORE
 PUSH1 0x01 // b = 1 value
 PUSH1 0x40 // b = 1 storage
 MSTORE
@@ -25,7 +22,7 @@ PUSH1 0x00 // load n memory slot
 MLOAD // load n value onto stack
 PUSH1 0X60 // load i from memory
 MLOAD // push i value onto stack
-GT // want to jump if not i < n
+EQ // want to jump if not i < n
 PUSH1 0X45 // push JUMPDEST of RETURN value
 JUMPI // jump if end of loop
 PUSH1 0X40 // b storage
