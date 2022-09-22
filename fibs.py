@@ -13,6 +13,8 @@ def fibs(n):
 
 
 def fibs_short(n):
+	if n == 0:
+		return 0
 	a = 0
 	b = 1
 	for _ in range(1, n):
@@ -21,6 +23,10 @@ def fibs_short(n):
 		b = c
 	return b
 
-for val in [0, 1, 5, 9, 600]:
-	print(f'fibs: {fibs(val)}')
-	print(f'fibs_short: {fibs_short(val)}')
+n_values = 15
+
+print(list(range(n_values)))
+print('normal')
+print([fibs(val) for val in range(n_values)])
+print('short')
+print([fibs_short(val) for val in range(n_values)])
