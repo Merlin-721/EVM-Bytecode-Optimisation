@@ -7,22 +7,21 @@ PUSH1 0X00 // n storage
 MSTORE
 PUSH1 0X00
 EQ
-PUSH1 0X44 // jump to return
+PUSH1 0X43 // jump to return
 JUMPI
 PUSH1 0x01 // b = 1 value
 DUP1 // i = 1 value
 PUSH1 0x40 // b = 1 storage
 MSTORE
+DUP1 // copy i value to leave on stack for loop
 PUSH1 0x60 // i = 1 storage
 MSTORE
 JUMPDEST // for loop ****************************
 PUSH1 0x00 // load n memory slot <----- probs cant do much between here
 MLOAD // load n value onto stack
-PUSH1 0X60 // load i from memory
-MLOAD // push i value onto stack
 EQ // want to jump if not i < n
-PUSH1 0X44 // push JUMPDEST of RETURN value
-JUMPI // jump if end of loop <----- probs cant do much between here
+PUSH1 0X43 // push JUMPDEST of RETURN value
+JUMPI // jump if end of loop <----- \/ probs below, /\ not much above 
 PUSH1 0X40 // b storage
 MLOAD // load b
 DUP1 // copy b for assigment to a
@@ -30,20 +29,21 @@ PUSH1 0X20 // a storage
 MLOAD // load a
 ADD // a + b
 PUSH1 0X80 // c storage
-MSTORE // c = a + b
+MSTORE // store c (a + b)
 PUSH1 0X20 // a storage
 MSTORE // a = b
 PUSH1 0X80 // c storage
 MLOAD // load c
 PUSH1 0x40 // b storage
 MSTORE // b = c
-PUSH1 0X60 // i storage
+PUSH1 0X60 // i storage i <----------
 MLOAD // load i
 PUSH1 0X01 // value to add
 ADD // increment i
+DUP1 // duplicate i for start of stack
 PUSH1 0X60 // i storage
 MSTORE // store i
-PUSH1 0X19 // start of loop dest
+PUSH1 0X1a // start of loop dest
 JUMP // jump to start of loop
 JUMPDEST // return b ***********************
 PUSH1 0X20
