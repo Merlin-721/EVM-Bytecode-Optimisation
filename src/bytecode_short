@@ -1,9 +1,14 @@
 PUSH1 0X00 // AVOID UNDERFLOW
 CALLDATALOAD // load n
-PUSH1 0X60 
+PUSH1 0X60 // shift amount
 SHR // shift value to right
+DUP1
 PUSH1 0X00 // n storage
 MSTORE
+PUSH1 0X00
+EQ
+PUSH1 0X45
+JUMPI
 //PUSH1 0x00 // a = 0 value (could remove as 0 anyway)
 //PUSH1 0x20 // a = 0 storage
 //MSTORE
@@ -21,7 +26,7 @@ MLOAD // load n value onto stack
 PUSH1 0X60 // load i from memory
 MLOAD // push i value onto stack
 GT // want to jump if not i < n
-PUSH1 0X3e // push JUMPDEST of RETURN value
+PUSH1 0X45 // push JUMPDEST of RETURN value
 JUMPI // jump if end of loop
 PUSH1 0X40 // b storage
 MLOAD // load b
@@ -43,7 +48,7 @@ PUSH1 0X01 // value to add
 ADD // increment i
 PUSH1 0X60 // i storage
 MSTORE // store i
-PUSH1 0X13 // start of loop dest
+PUSH1 0X1A // start of loop dest
 JUMP // jump to start of loop
 
 // return b
