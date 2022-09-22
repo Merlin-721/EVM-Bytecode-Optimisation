@@ -50,8 +50,8 @@ PUSH1 0x40 // b storage
 MLOAD // load b
 PUSH1 0x60 // shift value
 SHL // shift b
-PUSH1 0xA0 // b_shift storage
+PUSH1 0x40 // b_shift storage
 MSTORE // store b
 PUSH1 0X20 // b size
-PUSH1 0XA0  // b_shift storage
+PUSH1 0X40  // b_shift storage
 RETURN // return size 0x20 from 0xA0
