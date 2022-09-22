@@ -16,13 +16,13 @@ MSTORE
 PUSH1 0x60 // i = 1 storage
 MSTORE
 JUMPDEST // for loop ****************************
-PUSH1 0x00 // load n memory slot 
+PUSH1 0x00 // load n memory slot <----- probs cant do much between here
 MLOAD // load n value onto stack
 PUSH1 0X60 // load i from memory
 MLOAD // push i value onto stack
 EQ // want to jump if not i < n
 PUSH1 0X44 // push JUMPDEST of RETURN value
-JUMPI // jump if end of loop
+JUMPI // jump if end of loop <----- probs cant do much between here
 PUSH1 0X40 // b storage
 MLOAD // load b
 DUP1 // copy b for assigment to a
@@ -49,10 +49,9 @@ JUMPDEST // return b ***********************
 PUSH1 0X20
 PUSH1 0x40 // b storage
 DUP1
-DUP1
 MLOAD // load b
 PUSH1 0x60 // shift value
 SHL // shift b
-SWAP1
+DUP2
 MSTORE // store b
 RETURN // return size 0x20 from 0xA0
