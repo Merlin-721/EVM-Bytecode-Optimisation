@@ -54,4 +54,4 @@ PUSH1 0x60 // shift value
 SHL // shift b
 DUP2
 MSTORE // store b
-RETURN // return size 0x20 from 0xA0
+RETURN // return size 0x20 from 0x40
