@@ -2,13 +2,13 @@ PUSH1 0X00 // AVOID UNDERFLOW
 DUP1
 CALLDATALOAD // load n
 PUSH1 0X60 // shift amount
-SHR // shift value to right
-DUP1 // duplicate shifted value
-DUP3 // duplicate storage slot 0x00
-MSTORE // n 
+SHR // shift n to right
+DUP1 // dup n
+DUP3 // dup slot 0x00
+MSTORE // n to memory 
 EQ // n == 0?
 PUSH1 0X41 // return-section location
-JUMPI // jump to RETURN
+JUMPI // jump to return-section
 PUSH1 0x01 // 1 for 'b = 1' and 'i = 1'
 DUP1
 PUSH1 0x40 // b memory
@@ -33,11 +33,11 @@ MSTORE // store c (= a + b)
 PUSH1 0X20 // a memory
 MSTORE // a = b
 PUSH1 0X80 // c memory
-MLOAD // load c
+MLOAD
 PUSH1 0x40 // b memory
 MSTORE // b = c
 PUSH1 0X60 // i memory
-MLOAD // load i
+MLOAD
 PUSH1 0X01 // 1 for increment
 ADD // i++
 DUP1 // duplicate i for start of stack
