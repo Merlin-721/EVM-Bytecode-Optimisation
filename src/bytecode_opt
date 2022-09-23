@@ -3,51 +3,51 @@ DUP1
 CALLDATALOAD // load n
 PUSH1 0X60 // shift amount
 SHR // shift value to right
+DUP1 // duplicate shifted value
+DUP3 // duplicate storage slot 0x00
+MSTORE // n 
+EQ // n == 0?
+PUSH1 0X41 // return-section location
+JUMPI // jump to RETURN
+PUSH1 0x01 // 1 for 'b = 1' and 'i = 1'
 DUP1
-DUP3
-MSTORE
-EQ
-PUSH1 0X41 // jump to return
-JUMPI
-PUSH1 0x01 // b = 1 value
-DUP1 // i = 1 value
-PUSH1 0x40 // b = 1 storage
+PUSH1 0x40 // b memory
 MSTORE
 DUP1 // copy i value to leave on stack for loop
-PUSH1 0x60 // i = 1 storage
+PUSH1 0x60 // i memory
 MSTORE
-JUMPDEST // for loop ****************************
-PUSH1 0x00 // load n memory slot 
-MLOAD // load n value onto stack
-EQ // want to jump if not i < n
-PUSH1 0X41 // push JUMPDEST of RETURN value
-JUMPI // jump if end of loop 
-PUSH1 0X40 // b storage
-MLOAD // load b
+JUMPDEST // for-loop ****************************
+PUSH1 0x00 // n memory
+MLOAD
+EQ // i < n (i cannot be > n)
+PUSH1 0X41 // return-section
+JUMPI // go to return-section if end of loop 
+PUSH1 0X40 // b memory
+MLOAD 
 DUP1 // copy b for assigment to a
-PUSH1 0X20 // a storage
-MLOAD // load a
+PUSH1 0X20 // a memory
+MLOAD
 ADD // a + b
-PUSH1 0X80 // c storage
-MSTORE // store c (a + b)
-PUSH1 0X20 // a storage
+PUSH1 0X80 // c memory
+MSTORE // store c (= a + b)
+PUSH1 0X20 // a memory
 MSTORE // a = b
-PUSH1 0X80 // c storage
+PUSH1 0X80 // c memory
 MLOAD // load c
-PUSH1 0x40 // b storage
+PUSH1 0x40 // b memory
 MSTORE // b = c
-PUSH1 0X60 // i storage i 
+PUSH1 0X60 // i memory
 MLOAD // load i
-PUSH1 0X01 // value to add
-ADD // increment i
+PUSH1 0X01 // 1 for increment
+ADD // i++
 DUP1 // duplicate i for start of stack
-PUSH1 0X60 // i storage
+PUSH1 0X60 // i memory
 MSTORE // store i
-PUSH1 0X18 // start of loop dest
-JUMP // jump to start of loop
-JUMPDEST // return b ***********************
-PUSH1 0X20
-PUSH1 0x40 // b storage
+PUSH1 0X18 // for-loop location
+JUMP 
+JUMPDEST // return-section ***********************
+PUSH1 0X20 // b size
+PUSH1 0x40 // b memory
 DUP1
 MLOAD // load b
 PUSH1 0x60 // shift value
