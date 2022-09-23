@@ -17,11 +17,11 @@ DUP1 // copy i value to leave on stack for loop
 PUSH1 0x60 // i = 1 storage
 MSTORE
 JUMPDEST // for loop ****************************
-PUSH1 0x00 // load n memory slot <----- probs cant do much between here
+PUSH1 0x00 // load n memory slot 
 MLOAD // load n value onto stack
 EQ // want to jump if not i < n
 PUSH1 0X43 // push JUMPDEST of RETURN value
-JUMPI // jump if end of loop <----- \/ probs below, /\ not much above 
+JUMPI // jump if end of loop 
 PUSH1 0X40 // b storage
 MLOAD // load b
 DUP1 // copy b for assigment to a
@@ -36,7 +36,7 @@ PUSH1 0X80 // c storage
 MLOAD // load c
 PUSH1 0x40 // b storage
 MSTORE // b = c
-PUSH1 0X60 // i storage i <----------
+PUSH1 0X60 // i storage i 
 MLOAD // load i
 PUSH1 0X01 // value to add
 ADD // increment i
